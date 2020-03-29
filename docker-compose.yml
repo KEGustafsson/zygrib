@@ -1,0 +1,17 @@
+version: "2"
+services:
+  zygrib:
+    build: .
+    image: zygrib
+    container_name: zygrib
+    network_mode: host
+    environment:
+      - "DISPLAY"
+    volumes:
+      - $HOME/.Xauthority:/root/.Xauthority:rw 
+      - $PWD/grib:/root/.zygrib/grib
+    restart: unless-stopped
+    entrypoint: zyGrib
+    logging:
+      options:
+        max-size: 10m
